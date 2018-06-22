@@ -26,3 +26,46 @@ body {
 .input-text{
   margin-bottom: 20px;
 }
+.please-signin{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  padding: 30px;
+  margin: 30px;
+  border: 5px double green;
+  background: beige;
+}
+.indiv-joke{
+  width:300px;
+  height: auto;
+  background: beige;
+  color: #400040;
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items:center;
+  border: 5px double green;
+  margin: 15px;
+}
+.link-style{
+  color:lightskyblue;
+  text-decoration-line: line;
+}
+.register-link{
+  margin-top:20px;
+}
+.collection-of-jokes{
+  display:flex;
+  justify-content: center;
+  flex-wrap:wrap;
+}
+.sign-out{
+  margin-bottom:20px;
+  text-align:center;
+  cursor: pointer;
+}
+.title{
+  text-align:center;
+}
+

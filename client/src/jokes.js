@@ -37,9 +37,9 @@ class Jokes extends Component {
             <div>
                 {localStorage.getItem("jwt") && 
                     <div><div className="sign-out" onClick={this.handleSignOut}>Sign Out</div>  
-                    <h1 className="sign-out">Dad Joke's On You!</h1></div>}
+                    <h1 className="title">{"Dad Joke's On You!"}</h1></div>}
                 {!localStorage.getItem("jwt") &&
-                    <div className="please-signin"><Link className="link-style" to="/login">Please Sign in to access dad jokes</Link></div>}
+                    <div className="please-signin"><Link className="link-style" to="/login"><h3>Please Sign in to access dad jokes</h3></Link></div>}
             <ul className="collection-of-jokes">
             {this.state.jokes.map(joke => {
                 return(

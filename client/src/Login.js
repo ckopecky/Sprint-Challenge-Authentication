@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class Login extends Component {
     constructor(props){
@@ -28,12 +29,12 @@ class Login extends Component {
             })
     }
 
-    render() {
+    render(text) {
         console.log(this.state);
         return (
             <div>
                 <header className="App-header">
-                     <h1 className="App-title">Dad Joke's on You!!! </h1>
+                     <h1 className="title">{"Log-in to View World's Best Dad Jokes!"} </h1>
                 </header>
                 <div className="form-wrapper">
                     <label>Username:</label>
@@ -42,6 +43,8 @@ class Login extends Component {
                     <input className="input-text" name="password" value={this.state.password} type="password" onChange={this.handleChange}/>
                     <div><button onClick={this.handleClick}>Sign-In</button></div>
                 </div>
+                <div className="register-link"><Link to="/register" className="link-style">New User? Register Here!</Link></div>
+
             </div>
         );
     }
