@@ -1,80 +1,64 @@
-# Pushing you Onward with your knowledge of Authentication.
+# Sprint Challenge: Authentication - Dad Jokes
 
-* **DISCLAIMER** Authentication is a subject that many people spend a large amount time throughout their careers obtaining knowledge over. This is not something we expect you to have a mastery over, rather, we're preparing you to be able have an intelligent conversation about the subject.
+## Description
 
-![UnAuthorized](keep-calm-you-are-not-authorized.png)
+In this challenge, you build a real wise-guy application. _Dad jokes_ are all the rage these days. Currently the application is trying to receive some `Dad Jokes`, however we are locked out.
 
-* The objective of this challenge is to get you used to answering a few questions about Authentication.
-* We also have some more reps for you to help hammer in the knowledge you've thus far learned.
-* Answers to your written questions will be recorded in _ANSWERS.md_
-* This is to be worked on alone but you can use outside resources. You can _reference_ any old code you may have, and the React Documentation, however, please refrain from copying and pasting any of your answers. Try and understand the question and put your responses in your own words. Be as thorough as possible when explaining something.
-* **Just a friendly Reminder** Don't fret or get anxious about this, this is a no-pressure assessment that is only going to help guide you here in the near future. This is NOT a pass/fail situation.
+## Instructions
 
-## Start by forking and cloning this repository.
+**Read these instructions carefully. Understand exactly what is expected _before_ starting this Sprint Challenge.**
 
-## Questions - Self Study - You can exercise your Google-Fu for this and any other _Sprint Challenge_ in the future.
+This is an individual assessment, please work on it alone. It is an opportunity to demonstrate proficiency in the concepts and objectives introduced and practiced in preceding days.
 
-1.  Describe Middleware, Sessions (as we know them in express), bcrypt and JWT.
-1.  What does bcrypt do in order to prevent attacks?
-1.  What are the three parts of the JSON Web Token?
+If the instructions are not clear, please seek support from your TL and Instructor on Slack.
 
-## Project Description - User Management System - Jokes On YoU!
+The Minimum Viable Product must be completed in three hours.
 
-* What we have here is a wise-guy application. _Dad jokes_ are all the rage these days.
-* Our main problem with the application now is that we are trying to receive some mad dad jokes that are being requested from an external api, but we are locked out.
-* Trust me, we all need these dad jokes in our lives.
-* In order to be able to access our Killer Jokes you'll need to implement a User Authentication System that uses bcrypt and JWT.
+Follow these steps to set up and work on your project:
 
-## Initializing the Project
+- [ ] Create a forked copy of this project.
+- [ ] Add your _Team Lead_ as collaborator on Github.
+- [ ] Clone your forked version of the Repository.
+- [ ] Create a new Branch on the clone: git checkout -b `firstName-lastName`.
+- [ ] Implement the project on this Branch, committing changes regularly.
+- [ ] Push commits: git push origin `firstName-lastName`.
 
-* `cd` into the root of the project and run `yarn install`.
-* Once you have your `node_modules` go ahead and start your `mongod` server \* use either `mongod` `mongod --dbpath data` flag.
-* Run `nodemon app.js` to start your node server.
-* **TEST** this project using **`POSTMAN`**. Once you finish the project, you'll be tasked to set up `cors` properly for use with a client.
+Follow these steps for completing your project.
 
-### Step 1: Implement your User Schema in `api/models/userModels.js`
+- [ ] Submit a Pull-Request to merge `firstName-lastName` branch into `master` on your fork. **Please don't make Pull Requests against Lambda's repository**.
+- [ ] Please don't merge your own pull request.
+- [ ] Add your _Team Lead_ as a Reviewer on the Pull-request
+- [ ] Your _Team Lead_ will count the challenge as done by merging the branch into _master_.
 
-* The required fields are `username` (must be unique and required) and `password`.
+## Commits
 
-```json
-{
-  "username": "Tony@stark.com",
-  "password": "pepperpots"
-}
-```
+Commit your code regularly and use descriptive messages. This helps both you (in case you ever need to return to old code) and your Team Lead.
 
-* Next we'll use bcrypt to set up a `pre` hook on our `save` function for the UserSchema.
-* This pre save hook will act as middleware to encrypt our users passwords.
-* You can also take this time to set up a `checkPassword` method that can be used for comparing user passwords later on.
+## Self-Study/Essay Questions
 
-### Step 2: Implement your Create User Functionality in `api/controllers/user.js`
+Demonstrate your understanding of this week's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
-* Most of the heavy lifting will be taken care of in our pre save `middleware` that we've already implemented in our `userModel` file.
-* Be sure to follow instructions on creating a user and you should be set
-* **TEST** your `/api/users` _POST_ to ensure you can create a user with an encrypted password.
-* Before moving on make sure you can create a user in the DB with an encrypted pw.
+- [ ] What is the purpose of using _sessions_?
 
-### Step 3: Users Gotta Login!
+- [ ] What does bcrypt do to help us store passwords in a secure manner.
 
-* This step will be real fun. Primarily because it's built out for you already! You're welcome!
-* IF your `checkPassword` function is working properly, you should get back a token from the server.
-* You'll need to handle this token appropriately in your next route.
+- [ ] What does bcrypt do to slow down attackers?
 
-### Step 4: _GET_ your Jokes!
+- [ ] What are the three parts of the JSON Web Token?
 
-* Grab your Token sent back to you in JWT format from _/login_.
-* Send a `GET` request up to `/api/jokes` with the appropriate header and token.
-* Without the appropriate request header you'll get an error that looks like this from the `jwt` package
+## Minimum Viable Product
 
-```json
-{
-    "name": "JsonWebTokenError",
-    "message": "invalid signature"
-}
-```
+Implement an User Authentication System. Hash user's passwords before saving them to the database. Use `JSON Web Tokens` or `Sessions and Cookies` to persist authentication across requests.
 
-### Stretch Problem: Build a front end to interface with your User Auth System
+- [ ] Implement the `register` and `login` functionality inside `/auth/auth-router.js`. A `user` has `username` and `password`. Both properties are required.
+- [ ] Implement the `authenticate` middleware inside `/auth/authenticate-middleware.js`.
+- [ ] Write a **minimum o 2 tests** per API endpoint. Write more tests if you have time.
 
-* In order to play around with a client server app, you'll need to set up your `cors` inside of `server.js` properly.
-* Using React and React Router, create a `Sign Up`, `Sign In` and `Jokes` page.
-* Once you have the functionality down, you'll be able to style it up a bit and play around with the jokes etc.
+**Note**: the database already has the users table, but if you run into issues, the migrations are available.
+
+## Stretch Problem
+
+Build a front end to show the jokes.
+
+- [ ] Add a React client that connects to the API and has pages for `Sign Up`, `Sign In` and showing a list of `Jokes`.
+- [ ] Once you have the functionality down, style it!
