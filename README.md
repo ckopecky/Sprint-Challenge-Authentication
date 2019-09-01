@@ -40,11 +40,19 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 - [ ] What is the purpose of using _sessions_?
 
+cookie based sessions is a stateful way to authenticate a user -- a request is made from the client to login in. If the login is successful, the session id is kept track of on the server side while on the front end a cookie is created that holds that session identifier. Everytime a user makes a request, the cookie is sent to the server to check to see if the session ids match. Once the user logs out of the app, the session is destroyed. 
+
+
 - [ ] What does bcrypt do to help us store passwords in a secure manner.
+
+it takes the plaintext password, uses salt rounds and hashes it. 
 
 - [ ] What does bcrypt do to slow down attackers?
 
+bcrypt hashes the user's plaintext password into a cryptographic hash
 - [ ] What are the three parts of the JSON Web Token?
+
+payload, options, secret
 
 ## Minimum Viable Product
 
