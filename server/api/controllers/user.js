@@ -1,38 +1,21 @@
-const User = require('../models/userModels');
 const bcrypt = require('bcrypt');
-const jwt = require("jsonwebtoken");
-const { mysecret } = require("../../config");
+const Users = require('../models/userModels');
 
-const generateToken = (user) => {
-  const options = {
-    expiresIn: "1h",
-  };
-  const payload = {
-    username: user.username
-  }; // what will determine our payload.
-  return jwt.sign(payload, mysecret, options); // creates our JWT with a secret and a payload and a hash.
-}
+const register = (req, res) => {
+  let user = req.body;
+  const hash = bcrypt.hashSync(user.password, 10);
+  user.password = hash;
 
-const createUser = (req, res) => {
-  const { username, password } = req.body;
-  // create user takes in the username and password and saves a user.
-  // our pre save hook should kick in here saving this user to the DB with an encrypted password.
-  User
-    .create({username, password})
-    .then(user => {
-      if(user.username){
-        const token = generateToken(user);
-        res.status(201).json({user: user.username, token});
-      }
-      else{
-        res.status(422).json({Error:err.message})
-      }
+  Users.add(user)
+    .then(saved => {
+      res.status(201).json(saved);
     })
     .catch(err => {
-      res.status(500).json({Error: err.message});
-    });
-};
+      res.status(500).json(err.message);
+    })
+
+}
 
 module.exports = {
-  createUser
+  register
 };
