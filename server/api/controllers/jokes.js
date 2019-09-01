@@ -1,13 +1,12 @@
-const fetch = require('node-fetch');
-
+const axios = require('axios');
 const getAllJokes = (req, res) => {
-  if (req.decoded) {
-    fetch(
-      'https://08ad1pao69.execute-api.us-east-1.amazonaws.com/dev/random_ten'
-    )
-      .then(p => p.json())
-      .then(jokes => res.json(jokes))
-      .catch(err => res.status(500).json({ error: 'Error Fetching Jokes' }));
+  if (req.session) {
+    req.header['Accept'] = 'application/json'
+    axios.get('https://api.jokes.one/jod')
+      .then(jokes => {
+        res.status(200).json(jokes.data.contents.jokes[0]);
+      })
+      .catch(err => res.status(500).json({ error: 'Error Fetching Jokes', err: err.message }));
   } else {
     return res.status(422).json({ error: `Can't get these jokes!` });
   }
