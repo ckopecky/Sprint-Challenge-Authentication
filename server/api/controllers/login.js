@@ -11,7 +11,6 @@ const login = (req, res) => {
     .then(user => {
       if(user && bcrypt.compareSync(password, user.password)) {
         req.session.user = user.username;
-        console.log(req.session.cookie);
         res.status(200).json({message: `Welcome ${user.username}! Have a cookie *nom nom nom*`});
       }
       else {
